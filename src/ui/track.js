@@ -1,56 +1,89 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames'
 
 import * as PlayerActions from '../state/actions/player';
 
-function Track(props) {
-    const { music, currentMusic, setMusic, togglePlay, isPlaying, setInitialized } = props;
+function Track({
+    music,
+    currentMusic,
+    setMusic,
+    togglePlay,
+    isPlaying,
+    setInitialized,
+    setCurrentPlaylist,
+}) {
+    const coverSrc = music.thumbnail && music.thumbnail.length ? music.thumbnail : music.cover;
+    const isTrackPlaying = currentMusic.id === music.id;
+    const artistName = music.artists.map((artist, i) =>
+        artist.name + (i !== music.artists.length - 1 ? ', ' : '')
+    );
+
+    const className = classNames(
+        'track',
+        {
+            'track--playing': isTrackPlaying,
+        }
+    )
 
     const handleClick = () => {
-        props.setCurrentPlaylist();
-        if (currentMusic.id === music.id) {
-            return togglePlay();
+        setCurrentPlaylist();
+        if (isTrackPlaying) {
+            togglePlay();
+            return;
         }
-        setInitialized();
+        setInitialized(true);
         return setMusic(music);
     }
 
+    function renderPlayButton() {
+        if (!isTrackPlaying || !isPlaying) {
+            return <i className="track__play-icon fal fa-play" />
+        }
+
+        return <i className="track__play-icon fal fa-pause"></i>
+    }
+
     return (
-        <div className={"track" + (currentMusic.id === music.id ? ' active' : '')} onClick={handleClick}>
-            <div className="track__image">
-                <img src={music.thumbnail && music.thumbnail.length ? music.thumbnail : music.cover} alt={music.name} />
-            </div>
-            <div className="track__body">
-                <div className="d-flex align-items-center justify-content-start">
-                    <h2>{music.name}</h2>
-                    <h3>{music.artists.map((artist, i) => artist.name + (i !== music.artists.length - 1 ? ', ' : ''))}</h3>
+        <div className={className} onClick={handleClick}>
+            <img className="track__cover" src={coverSrc} alt={music.name} />
+            <div className="track__content">
+                <div className="track__details">
+                    <h2 className="track__name">
+                        {music.name}
+                    </h2>
+                    <h3 className="track__artist">
+                        {artistName}
+                    </h3>
                 </div>
-                <div className="d-flex align-items-center justify-content-end">
-                    <b className="play-count">{music.play_count || '-'} <small>plays</small></b>
-                    {currentMusic.id === music.id ?
-                        (isPlaying ?
-                            <i className="fal fa-pause"></i>
-                            : <i className="fal fa-play"></i>)
-                        : <i className="fal fa-play"></i>}
+                <div className="track__actions">
+                    {music.play_count && (
+                        <b className="track__play-count">
+                            {music.play_count}
+                            <small>plays</small>
+                        </b>
+                    )}
+                    {renderPlayButton()}
                 </div>
             </div>
         </div>
     );
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        setMusic: music => dispatch(PlayerActions.setMusic(music)),
-        togglePlay: () => dispatch(PlayerActions.togglePlayMusic()),
-        setInitialized: () => dispatch(PlayerActions.setInitialized(true))
-    };
+const mapDispatchToProps = {
+    setMusic: PlayerActions.setMusic,
+    togglePlay: PlayerActions.togglePlayMusic,
+    setInitialized: PlayerActions.setInitialized
 };
 
-const mapStateToProps = state => {
-    return {
-        currentMusic: state.playerReducer.music,
-        isPlaying: state.playerReducer.isPlaying
-    };
-};
+const mapStateToProps = ({
+    playerReducer: {
+        music: currentMusic,
+        isPlaying
+    }
+}) => ({
+    currentMusic,
+    isPlaying,
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Track);

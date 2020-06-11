@@ -594,19 +594,6 @@ h1,h2,h3,h4,h5,h6,a,p,ul,ol,table,img,pre,code{
   margin:25px 0;
 }
 
-.play-count{
-  position: relative;
-  top:-5px;
-}
-
-.play-count small{
-  font-size:10px;
-  font-weight:normal;
-  position:absolute;
-  right:0;
-  bottom:-10px;
-}
-
 .circle-image{
   width:200px;
   height:200px;
@@ -636,74 +623,97 @@ h1,h2,h3,h4,h5,h6,a,p,ul,ol,table,img,pre,code{
 }
 
 .track{
+  display:flex;
+  align-items:center;
   width:100%;
   height:70px;
   margin-bottom:5px;
-  overflow: hidden;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background:rgba(255,255,255,.1);
   padding:0 10px;
+  background:rgba(255,255,255,.1);
   border-radius:5px;
   cursor: pointer;
 
-  &.active{
-    border:1px solid $primary-color;
+  &:hover {
+    background:rgba(255,255,255, .2);
+  }
+  
+  &--playing {
+    border: 1px solid $primary-color;
   }
 
-  &__image{
+  &__cover{
     width:50px;
     height:50px;
     border-radius:5px;
+    object-fit: cover;
+  }
+
+  &__content{
+    flex: 1;
     display:flex;
-    align-items:center;
-    justify-content:center;
+    align-items: center;
+    min-width: 0;
+  }
+  
+  &__details{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    padding: 0 20px;
+
+    @media screen and (max-width: 770px){
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__name, &__artist {
+    text-overflow: ellipsis;
     overflow: hidden;
+    white-space: nowrap;
 
-    img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
+    @media screen and (max-width: 770px){
+      width: 100%;
     }
   }
 
-  &__body{
-    width:calc(100% - 50px);
-    padding-left:20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+  &__name {
+    margin-right:15px;
+    font-size:18px;
+    color: white;
+  }
 
-    i{
-      color:$primary-color;
-      margin-right:15px;
-      margin-left:25px;
-    }
+  &__artist {
+    font-size:14px;
+    font-weight:normal;
+    color: $title-color;
+  }
+  
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 
-    b{
-      font-family: 'CircularAir';
-      font-size:14px;
-    }
+  &__play-count{
+    font-family: 'CircularAir';
+    font-size:14px;
 
-    h2{
-      margin-right:15px;
-      font-size:18px;
-      color:#FFF;
-      position: relative;
-      top:-2px;
-    }
-
-    h3{
-      font-size:14px;
-      color:$title-color;
+    & small{
+      display: block;
+      font-size:10px;
       font-weight:normal;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      max-width:200px;
+      text-align: right;
     }
   }
+
+  &__play-icon {
+    margin-right:15px;
+    margin-left:25px;
+    color:$primary-color;
+  }
+
 }
 
 .justify-content-end{
