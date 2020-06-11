@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "51b7bd8162492e2015e32fb7df864570",
+    "revision": "555c3fe106d34e6fc7f27dab3e35ac40",
     "url": "/marta/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/marta/static/css/2.25aee8c0.chunk.css"
   },
   {
-    "revision": "1dee66eaa3b05e2fefa8",
+    "revision": "5be87407d0c42ab3923e",
     "url": "/marta/static/css/main.d3e84b4b.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/marta/static/js/2.31a11891.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1dee66eaa3b05e2fefa8",
-    "url": "/marta/static/js/main.03f6cb76.chunk.js"
+    "revision": "5be87407d0c42ab3923e",
+    "url": "/marta/static/js/main.e2106fcb.chunk.js"
   },
   {
     "revision": "d573a8ead76949ee4357",
@@ -132,8 +132,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/marta/static/media/fa-solid-900.f960deb9.eot"
   },
   {
-    "revision": "653ef698c32e54802c7818eea36600f2",
-    "url": "/marta/static/media/logo.653ef698.svg"
+    "revision": "302783caf9f4860720c2ab653cba022b",
+    "url": "/marta/static/media/logo.302783ca.svg"
   },
   {
     "revision": "b7c9e1e479de3b53f1e4e30ebac2403a",
