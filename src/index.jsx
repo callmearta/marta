@@ -8,20 +8,20 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 serviceWorker.register({
-  onUpdate: registration => {
-    let updateBlock = document.getElementById('update-block');
-    let updateButton = document.getElementById('update-button');
+  onUpdate: (registration) => {
+    const updateBlock = document.getElementById('update-block');
+    const updateButton = document.getElementById('update-button');
 
     updateBlock.classList.add('show');
-    updateButton.addEventListener('click', function (e) {
+    updateButton.addEventListener('click', () => {
       if (registration && registration.waiting) {
         registration.waiting.postMessage({ type: 'SKIP_WAITING' });
       }
       window.location.reload();
     });
-  }
+  },
 });
