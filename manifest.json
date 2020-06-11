@@ -1,9 +1,9 @@
 {
-  "short_name": "Casset",
-  "name": "Music without borders",
+  "short_name": "Marta",
+  "name": "Music without borders but with Arta",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "logo192.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
