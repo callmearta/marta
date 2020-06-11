@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 
 import homeReducer from './reducers/home';
 import playerReducer from './reducers/player';
+import searchReducer from './reducers/search';
 
 const reducers = combineReducers({
     homeReducer,
-    playerReducer
+    playerReducer,
+    searchReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));

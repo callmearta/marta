@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import * as PlayerActions from '../state/actions/player';
 
 function Music(props) {
-    const { music, currentMusic, setMusic, togglePlay, isPlaying } = props;
+    const { music, currentMusic, setMusic, togglePlay, isPlaying, setInitialized } = props;
 
     const handleClick = () => {
+        props.setCurrentPlaylist();
         if (currentMusic.id === music.id) {
             return togglePlay();
         }
+        setInitialized();
         return setMusic(music);
     }
 
@@ -34,7 +36,8 @@ function Music(props) {
 const mapDispatchToProps = dispatch => {
     return {
         setMusic: music => dispatch(PlayerActions.setMusic(music)),
-        togglePlay: () => dispatch(PlayerActions.togglePlayMusic())
+        togglePlay: () => dispatch(PlayerActions.togglePlayMusic()),
+        setInitialized: () => dispatch(PlayerActions.setInitialized(true))
     };
 };
 

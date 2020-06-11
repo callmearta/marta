@@ -19,3 +19,7 @@ export const setPos = (payload) => {
 export const setDuration = (payload) => {
     return { type: Consts.SET_DURATION, payload };
 }
+
+export const setInitialized = (payload) => {
+    return { type: Consts.SET_INITIALIZED, payload };
+}
