@@ -5,7 +5,8 @@ const initialState = {
     music: {},
     playlist: [],
     currentPos: 0,
-    duration: 0
+    duration: 0,
+    initialized: false
 };
 
 const playerReducer = (state = initialState, action) => {
@@ -20,6 +21,8 @@ const playerReducer = (state = initialState, action) => {
             return { ...state, currentPos: action.payload };
         case Consts.SET_DURATION:
             return { ...state, duration: action.payload };
+        case Consts.SET_INITIALIZED:
+            return { ...state, initialized: action.payload }
         default:
             return state;
     };
