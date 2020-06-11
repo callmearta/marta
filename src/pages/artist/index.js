@@ -7,6 +7,7 @@ import MusicsContainer from '../../ui/musicsContainer';
 import Api from '../../helpers/api';
 import Loading from '../../ui/loading';
 import PlaylistsContainer from '../../ui/playlistsContainer';
+import AlbumsContainer from '../../ui/albumsContainer';
 
 import * as PlayerActions from '../../state/actions/player';
 import ArtistsContainer from '../../ui/artistsContainer';
@@ -82,7 +83,7 @@ function Artist(props) {
                     {artist.data.albums.length ?
                         <section>
                             <h2 className="section-title">Albums</h2>
-                            <PlaylistsContainer playlists={artist.data.albums} />
+                            <AlbumsContainer albums={artist.data.albums} />
                         </section>
                         : ''}
                     {artist.data.related_artist.length ?
