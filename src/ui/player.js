@@ -112,9 +112,7 @@ function Player({
     useEffect(() => {
         if (isPlaying) {
             setCurrentPosHandler();
-            audio.current.play().catch(() => {
-                audio.current.play();
-            });
+            audio.current.play();
         } else {
             destroyCurrentPosHandler();
             audio.current.pause();
@@ -132,8 +130,11 @@ function Player({
         document.body.removeEventListener('click', unlockAudio)
         document.body.removeEventListener('touchstart', unlockAudio)
     }
-    document.body.addEventListener('click', unlockAudio);
-    document.body.addEventListener('touchstart', unlockAudio);
+
+    useEffect(() => {
+        document.body.addEventListener('click', unlockAudio);
+        document.body.addEventListener('touchstart', unlockAudio);
+    }, []);
 
     const playerUI = function () {
         const cover = currentMusic.id ? <img src={currentMusic.cover} alt={currentMusic.name || '-'} /> : '';
