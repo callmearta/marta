@@ -46,6 +46,16 @@ function Player({
     }
   };
 
+  const SKIP_TIME = 10;
+
+  const seekForward = () => {
+    audio.current.currentTime = Math.min(audio.current.currentTime + SKIP_TIME, audio.current.duration);
+  }
+
+  const seekBackward = () => {
+    audio.current.currentTime = Math.max(audio.current.currentTime - SKIP_TIME, 0);
+  }
+
   const handleMetaDatas = () => {
     if ('mediaSession' in navigator) {
       navigator.mediaSession.metadata = new window.MediaMetadata({
@@ -53,7 +63,7 @@ function Player({
         // eslint-disable-next-line no-nested-ternary
         artist: currentMusic.artists && currentMusic.artists.length
           ? (currentMusic.artists.length > 1
-            ? currentMusic.artists.join(', ')
+            ? currentMusic.artists.map((artist, i) => artist.name + (i !== currentMusic.artists.length - 1 ? ', ' : ''))
             : currentMusic.artists[0].name)
           : '-',
         album: '',
@@ -69,6 +79,8 @@ function Player({
 
       navigator.mediaSession.setActionHandler('play', togglePlay);
       navigator.mediaSession.setActionHandler('pause', togglePlay);
+      navigator.mediaSession.setActionHandler('seekbackward', seekBackward);
+      navigator.mediaSession.setActionHandler('seekforward', seekForward);
       navigator.mediaSession.setActionHandler('previoustrack', handlePrevSong);
       navigator.mediaSession.setActionHandler('nexttrack', handleNextSong);
     }
