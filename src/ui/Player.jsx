@@ -92,7 +92,9 @@ function Player({
     };
     handleMetaDatas();
     if (initialized) {
-      audio.current.play().catch(() => audio.current.play());
+      audio.current.play().catch(() => {
+        audio.current.play();
+      });
       if (!isPlaying) {
         togglePlay();
       }
@@ -103,8 +105,6 @@ function Player({
     setPos(secs);
     audio.current.currentTime = secs;
   };
-
-  const fixedInt = (value) => Number(value).toFixed(0);
 
   useEffect(() => {
     if (currentMusic.link320 || currentMusic.link128 || currentMusic.link64) {
@@ -122,6 +122,25 @@ function Player({
     }
   }, [isPlaying]);
 
+  /**
+     * iPhone Fix
+     */
+  function unlockAudio() {
+    audio.current.play();
+    audio.current.pause();
+    audio.current.currentTime = 0;
+
+    document.body.removeEventListener('click', unlockAudio);
+    document.body.removeEventListener('touchstart', unlockAudio);
+  }
+
+  const fixedInt = (value) => Number(value).toFixed(0);
+
+  useEffect(() => {
+    document.body.addEventListener('click', unlockAudio);
+    document.body.addEventListener('touchstart', unlockAudio);
+  }, []);
+
   const playerUI = function () {
     const cover = currentMusic.id ? <img src={currentMusic.cover} alt={currentMusic.name || '-'} /> : '';
     const name = <strong>{currentMusic.name || '-'}</strong>;
@@ -129,10 +148,9 @@ function Player({
       <small>
         {// eslint-disable-next-line no-nested-ternary
           currentMusic.artists && currentMusic.artists.length
-            ? (currentMusic.artists.length > 1
-              ? currentMusic.artists.map(
-                (artist, i) => artist.name + (i !== currentMusic.artists.length - 1 ? ', ' : ''),
-              ) : currentMusic.artists[0].name)
+            ? (currentMusic.artists.length > 1 ? currentMusic.artists.map(
+              (artist, i) => artist.name + (i !== currentMusic.artists.length - 1 ? ', ' : ''),
+            ) : currentMusic.artists[0].name)
             : ''
         }
       </small>
