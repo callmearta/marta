@@ -89,7 +89,9 @@ function Player({
         };
         handleMetaDatas();
         if (initialized) {
-            audio.current.play().catch(() => audio.current.play());
+            audio.current.play().catch(() => {
+                audio.current.play();
+            });
             if (!isPlaying) {
                 togglePlay();
             }
@@ -110,12 +112,28 @@ function Player({
     useEffect(() => {
         if (isPlaying) {
             setCurrentPosHandler();
-            audio.current.play();
+            audio.current.play().catch(() => {
+                audio.current.play();
+            });
         } else {
             destroyCurrentPosHandler();
             audio.current.pause();
         }
     }, [isPlaying]);
+
+    /**
+     * iPhone Fix
+     */
+    function unlockAudio() {
+        audio.current.play();
+        audio.current.pause();
+        audio.current.currentTime = 0;
+
+        document.body.removeEventListener('click', unlockAudio)
+        document.body.removeEventListener('touchstart', unlockAudio)
+    }
+    document.body.addEventListener('click', unlockAudio);
+    document.body.addEventListener('touchstart', unlockAudio);
 
     const playerUI = function () {
         const cover = currentMusic.id ? <img src={currentMusic.cover} alt={currentMusic.name || '-'} /> : '';
