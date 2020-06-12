@@ -1,25 +1,13 @@
-import * as Consts from '../constants/player';
+import * as actionTypes from '../action-types/player';
 
-export const togglePlayMusic = () => {
-    return { type: Consts.TOGGLE_PLAY };
-}
+export const togglePlayMusic = () => ({ type: actionTypes.TOGGLE_PLAY });
 
-export const setMusic = (payload) => {
-    return { type: Consts.SET_MUSIC, payload };
-};
+export const setMusic = (payload) => ({ type: actionTypes.SET_MUSIC, payload });
 
-export const setPlaylist = (payload) => {
-    return { type: Consts.SET_PLAYLIST, payload };
-}
+export const setPlaylist = (payload) => ({ type: actionTypes.SET_PLAYLIST, payload });
 
-export const setPos = (payload) => {
-    return { type: Consts.SET_POS, payload };
-}
+export const setPos = (payload) => ({ type: actionTypes.SET_POS, payload });
 
-export const setDuration = (payload) => {
-    return { type: Consts.SET_DURATION, payload };
-}
+export const setDuration = (payload) => ({ type: actionTypes.SET_DURATION, payload });
 
-export const setInitialized = (payload) => {
-    return { type: Consts.SET_INITIALIZED, payload };
-}
+export const setInitialized = (payload) => ({ type: actionTypes.SET_INITIALIZED, payload });
