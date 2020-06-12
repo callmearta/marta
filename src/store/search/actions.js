@@ -1,5 +1,5 @@
-import * as actionTypes from '../action-types/search';
-import Api from '../../helpers/api';
+import * as actionTypes from './action-types';
+import Api from '../../api';
 
 // eslint-disable-next-line import/prefer-default-export
 export const fetchResult = (query) => async (dispatch) => {

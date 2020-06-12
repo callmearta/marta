@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { matchPath } from 'react-router';
-
 import Logo from '../assets/images/logo.svg';
 
 function Header({ location, history }) {

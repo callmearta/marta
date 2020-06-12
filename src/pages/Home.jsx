@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
-import MusicsContainer from '../ui/MusicsContainer';
-import Vitrine from '../ui/Vitrine';
-import Loading from '../ui/Loading';
-import * as Actions from '../state/actions/home';
+import MusicsContainer from '../components/MusicsContainer';
+import Vitrine from '../components/Vitrine';
+import Loading from '../components/Loading';
+import * as Actions from '../store/home/actions';
 
 function Home({
   match, homeState, fetchMusicsFind, fetchVitrines,
@@ -33,7 +32,7 @@ function Home({
 }
 
 const mapStateToProps = ({
-  homeReducer
+  homeReducer,
 }) => ({
   homeState: homeReducer,
 });

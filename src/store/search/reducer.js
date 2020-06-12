@@ -1,4 +1,4 @@
-import * as Consts from '../action-types/search';
+import * as Consts from './action-types';
 
 const initialState = {
   result: {},

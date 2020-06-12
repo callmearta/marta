@@ -1,4 +1,4 @@
-import * as actionTypes from '../action-types/home';
+import * as actionTypes from './action-types';
 
 const initialState = {
   global: {

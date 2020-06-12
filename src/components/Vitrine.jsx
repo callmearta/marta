@@ -1,5 +1,4 @@
 import React from 'react';
-
 import MusicsContainer from './MusicsContainer';
 import PlaylistsContainer from './PlaylistsContainer';
 import ArtistsContainer from './ArtistsContainer';
@@ -8,8 +7,8 @@ function Vitrine({
   data: {
     type,
     data: innerData,
-    name
-  }, hero
+    name,
+  }, hero,
 }) {
   return (
     <div className={`vitrine-wrapper${hero ? ' hero-wrapper' : ''}`}>

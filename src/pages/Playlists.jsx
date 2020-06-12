@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
-
-import PlaylistsContainer from '../ui/PlaylistsContainer';
-import Api from '../helpers/api';
+import PlaylistsContainer from '../components/PlaylistsContainer';
+import Api from '../api';
 
 function Playlist({ match, history }) {
   const playlistId = match.params.id;

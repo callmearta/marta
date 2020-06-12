@@ -1,4 +1,4 @@
-import * as Consts from '../action-types/player';
+import * as Consts from './action-types';
 
 const initialState = {
   isPlaying: false,

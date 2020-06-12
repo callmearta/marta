@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-import * as PlayerActions from '../state/actions/player';
+import * as PlayerActions from '../store/player/actions';
 
 function Music({
   music, currentMusic, setMusic, togglePlay, isPlaying, setInitialized, setCurrentPlaylist,

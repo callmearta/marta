@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import MusicsContainer from '../components/MusicsContainer';
+import Loading from '../components/Loading';
+import Api from '../api';
 
-import MusicsContainer from '../ui/MusicsContainer';
-import Loading from '../ui/Loading';
-import Api from '../helpers/api';
-
-import * as PlayerActions from '../state/actions/player';
+import * as PlayerActions from '../store/player/actions';
 
 function Album({ match: { params: { id: albumId } }, history }) {
   const [album, setAlbum] = useState({

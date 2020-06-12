@@ -1,7 +1,6 @@
-import * as actionTypes from '../action-types/home';
-import * as PlayerActions from './player';
-
-import Api from '../../helpers/api';
+import * as actionTypes from './action-types';
+import * as PlayerActions from '../player/actions';
+import Api from '../../api';
 
 export const fetchMusicsFind = (region) => async (dispatch, getState) => {
   dispatch({ type: actionTypes.FETCH_MUSICS_FIND, region });

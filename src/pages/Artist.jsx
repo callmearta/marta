@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
-import Track from '../ui/Track';
-import MusicsContainer from '../ui/MusicsContainer';
-import Loading from '../ui/Loading';
-import PlaylistsContainer from '../ui/PlaylistsContainer';
-import AlbumsContainer from '../ui/AlbumsContainer';
-import ArtistsContainer from '../ui/ArtistsContainer';
-import Api from '../helpers/api';
-import * as PlayerActions from '../state/actions/player';
+import Track from '../components/Track';
+import MusicsContainer from '../components/MusicsContainer';
+import Loading from '../components/Loading';
+import PlaylistsContainer from '../components/PlaylistsContainer';
+import AlbumsContainer from '../components/AlbumsContainer';
+import ArtistsContainer from '../components/ArtistsContainer';
+import Api from '../api';
+import * as PlayerActions from '../store/player/actions';
 
 function Artist({ setCurrentPlaylist, match, history }) {
   const artistId = match.params.id;

@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import Loading from './Loading';
 import Music from './Music';
-import * as PlayerActions from '../state/actions/player';
+import * as PlayerActions from '../store/player/actions';
 
 function MusicSlider({
   musics, loading, title, setCurrentPlaylist,

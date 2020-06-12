@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
-import * as Actions from '../state/actions/search';
-import PlaylistsContainer from '../ui/PlaylistsContainer';
-import MusicsContainer from '../ui/MusicsContainer';
-import ArtistsContainer from '../ui/ArtistsContainer';
-import AlbumsContainer from '../ui/AlbumsContainer';
-import Loading from '../ui/Loading';
+import PlaylistsContainer from '../components/PlaylistsContainer';
+import MusicsContainer from '../components/MusicsContainer';
+import ArtistsContainer from '../components/ArtistsContainer';
+import AlbumsContainer from '../components/AlbumsContainer';
+import Loading from '../components/Loading';
+import * as Actions from '../store/search/actions';
 
 function Search({
   match: { params: { query } }, fetchResult, result, loading,

@@ -1,4 +1,4 @@
-import * as actionTypes from '../action-types/player';
+import * as actionTypes from './action-types';
 
 export const togglePlayMusic = () => ({ type: actionTypes.TOGGLE_PLAY });
 

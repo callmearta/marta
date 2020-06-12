@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import ReactSlider from 'react-slider';
 import { connect } from 'react-redux';
-
-import * as PlayerActions from '../state/actions/player';
+import * as PlayerActions from '../store/player/actions';
 
 function Player({
   currentMusic,
@@ -49,12 +48,15 @@ function Player({
   const SKIP_TIME = 10;
 
   const seekForward = () => {
-    audio.current.currentTime = Math.min(audio.current.currentTime + SKIP_TIME, audio.current.duration);
-  }
+    audio.current.currentTime = Math.min(
+      audio.current.currentTime + SKIP_TIME,
+      audio.current.duration,
+    );
+  };
 
   const seekBackward = () => {
     audio.current.currentTime = Math.max(audio.current.currentTime - SKIP_TIME, 0);
-  }
+  };
 
   const handleMetaDatas = () => {
     if ('mediaSession' in navigator) {

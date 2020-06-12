@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-
-import * as PlayerActions from '../state/actions/player';
+import * as PlayerActions from '../store/player/actions';
 
 function Track({
   music,

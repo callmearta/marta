@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter, matchPath } from 'react-router';
-
 import RegionHandler from '../helpers/region';
 
 function Sidebar({ location, history }) {

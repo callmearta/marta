@@ -1,4 +1,4 @@
-@import url('./assets/css/all.min.css');
+@import url('../assets/css/all.min.css');
 
 $primary-color:#e41957;
 $title-color:#7f799c;
@@ -7,37 +7,37 @@ $title-color:#7f799c;
     font-family: almarai;
     font-style: normal;
     font-weight: 800;
-    src: url('./assets/fonts/Almarai-ExtraBold.ttf') format("truetype");
+    src: url('../assets/fonts/Almarai-ExtraBold.ttf') format("truetype");
   }
   @font-face {
     font-family: almarai;
     font-style: normal;
     font-weight: 600;
-    src: url('./assets/fonts/Almarai-Bold.ttf') format("truetype");
+    src: url('../assets/fonts/Almarai-Bold.ttf') format("truetype");
   }
   @font-face {
     font-family: almarai;
     font-style: normal;
     font-weight: 500;
-    src: url('./assets/fonts/Almarai-Regular.ttf') format("truetype");
+    src: url('../assets/fonts/Almarai-Regular.ttf') format("truetype");
   }
   @font-face {
     font-family: almarai;
     font-style: normal;
     font-weight: 400;
-    src: url('./assets/fonts/Almarai-Light.ttf') format("truetype");
+    src: url('../assets/fonts/Almarai-Light.ttf') format("truetype");
   }
   @font-face {
     font-family: "Circular-Black";
     font-style: normal;
     font-weight: 900;
-    src: url('./assets/fonts/Circular-Black.ttf') format("truetype");
+    src: url('../assets/fonts/Circular-Black.ttf') format("truetype");
   }
   @font-face {
     font-family: "CircularAir";
     font-style: normal;
     font-weight: normal;
-    src: url('./assets/fonts/CircularAir-Book.ttf') format("truetype");
+    src: url('../assets/fonts/CircularAir-Book.ttf') format("truetype");
   }
   * {
     -webkit-user-select: none;
