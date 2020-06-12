@@ -32,13 +32,15 @@ function Home({
   );
 }
 
-const mapStateToProps = (state) => ({
-  homeState: state.homeReducer,
+const mapStateToProps = ({
+  homeReducer
+}) => ({
+  homeState: homeReducer,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchMusicsFind: (region) => dispatch(Actions.fetchMusicsFind(region)),
-  fetchVitrines: (region) => dispatch(Actions.fetchVitrines(region)),
-});
+const mapDispatchToProps = {
+  fetchMusicsFind: Actions.fetchMusicsFind,
+  fetchVitrines: Actions.fetchVitrines,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Home));

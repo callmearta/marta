@@ -33,8 +33,8 @@ function MusicSlider({
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentPlaylist: (playlist) => dispatch(PlayerActions.setPlaylist(playlist)),
-});
+const mapDispatchToProps = {
+  setCurrentPlaylist: PlayerActions.setPlaylist,
+};
 
 export default connect(null, mapDispatchToProps)(MusicSlider);
