@@ -28,7 +28,7 @@ function Player({
       nextTrack = playlist[currentSongIndex + 1];
       setCurrentMusic(nextTrack);
     } else {
-      [nextTrack] = playlist;
+      nextTrack = playlist[0];
       setCurrentMusic(nextTrack);
     }
   };
@@ -105,6 +105,7 @@ function Player({
       src: [currentMusic.link320, currentMusic.link128, currentMusic.link64],
       html5: true,
       preload: 'metadata',
+      onend: () => handleNextSong(),
       onload: () => setDuration(audio.current.duration()),
     });
 
@@ -112,8 +113,8 @@ function Player({
 
     handleMetaDatas();
 
+    audio.current.play();
     if (initialized) {
-      audio.current.play();
       if (!isPlaying) {
         togglePlay();
       }
@@ -175,17 +176,17 @@ function Player({
     );
     const currentTime = (
       <b>
-        {fixedInt(currentPos / 60)}
+        {!Number.isNaN(currentPos / 60) ? fixedInt(currentPos / 60) : 0}
         :
-        {currentPos % 60 < 10 ? `0${fixedInt(currentPos % 60)}` : fixedInt(currentPos % 60)}
+        {!Number.isNaN(currentPos / 60) ? currentPos % 60 < 10 ? `0${fixedInt(currentPos % 60)}` : fixedInt(currentPos % 60) : 0}
       </b>
     );
     const trackDuration = (
       <small>
         /
-        {fixedInt(duration / 60)}
+        {!Number.isNaN(duration / 60) ? fixedInt(duration / 60) : ''}
         :
-        {duration % 60 < 10 ? `0${fixedInt(duration % 60)}` : fixedInt(duration % 60)}
+        {!Number.isNaN(duration / 60) ? duration % 60 < 10 ? `0${fixedInt(duration % 60)}` : fixedInt(duration % 60) : 0}
       </small>
     );
     const time = (

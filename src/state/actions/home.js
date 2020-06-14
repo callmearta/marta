@@ -9,8 +9,8 @@ export const fetchMusicsFind = (region) => async (dispatch, getState) => {
   if (result.success) {
     const musics = result.data;
     if (!getState().playerReducer.music.id) {
-      dispatch(PlayerActions.setMusic(musics[0]));
       dispatch(PlayerActions.setPlaylist(musics));
+      dispatch(PlayerActions.setMusic(musics[0]));
       dispatch(PlayerActions.togglePlayMusic());
     }
     return dispatch({ payload: musics, type: actionTypes.FETCH_MUSICS_FIND_SUCCESS, region });
