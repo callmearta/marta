@@ -40,16 +40,15 @@ $title-color:#7f799c;
     src: url('./assets/fonts/CircularAir-Book.ttf') format("truetype");
   }
   * {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-user-drag: none;
     box-sizing: border-box;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing:antialiased;
     outline:none !important;
   }
+
+h1,h2,h3,h4,h5,h6,p,strong,small,div{
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
 
 html,body{
   overflow-x:hidden;

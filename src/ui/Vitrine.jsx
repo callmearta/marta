@@ -20,6 +20,7 @@ function Vitrine({
           artists: <ArtistsContainer artists={innerData} />,
           grid: <MusicsContainer musics={innerData} loading={false} />,
           playlists: <PlaylistsContainer playlists={innerData} loading={false} />,
+          playlist_grid: <PlaylistsContainer playlists={innerData} loading={false} />,
           hero_sliders: <PlaylistsContainer playlists={innerData} loading={false} />,
           genres: <PlaylistsContainer playlists={innerData} loading={false} />,
           albums: <PlaylistsContainer playlists={innerData} loading={false} />,

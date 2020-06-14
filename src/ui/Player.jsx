@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import ReactSlider from 'react-slider';
 import { connect } from 'react-redux';
+import { Howl, Howler } from 'howler';
 
 import * as PlayerActions from '../state/actions/player';
 
@@ -17,7 +18,7 @@ function Player({
   setCurrentMusic,
   setInitialized,
 }) {
-  const audio = useRef(new Audio());
+  const audio = useRef();
   const currentPosInterval = useRef();
 
   const handleNextSong = () => {
@@ -31,8 +32,6 @@ function Player({
       setCurrentMusic(nextTrack);
     }
   };
-
-  audio.current.onended = handleNextSong;
 
   const handlePrevSong = () => {
     const currentSongIndex = playlist.findIndex((track) => track.id === currentMusic.id);
@@ -88,7 +87,7 @@ function Player({
 
   const setCurrentPosHandler = () => {
     currentPosInterval.current = setInterval(() => {
-      setPos(audio.current.currentTime);
+      setPos(audio.current.seek());
     }, 500);
   };
 
@@ -98,15 +97,23 @@ function Player({
   };
 
   const handlePlay = () => {
-    audio.current.src = currentMusic.link320 || currentMusic.link128 || currentMusic.link64;
-    audio.current.onloadedmetadata = function () {
-      setDuration(audio.current.duration);
-    };
+    if (audio.current) {
+      audio.current.unload();
+    }
+
+    audio.current = new Howl({
+      src: [currentMusic.link320, currentMusic.link128, currentMusic.link64],
+      html5: true,
+      preload: 'metadata',
+      onload: () => setDuration(audio.current.duration()),
+    });
+
+    audio.current._sounds[0]._node.title = currentMusic.name;
+
     handleMetaDatas();
+
     if (initialized) {
-      audio.current.play().catch(() => {
-        audio.current.play();
-      });
+      audio.current.play();
       if (!isPlaying) {
         togglePlay();
       }
@@ -115,7 +122,7 @@ function Player({
 
   const handleSeekbar = (secs) => {
     setPos(secs);
-    audio.current.currentTime = secs;
+    audio.current.seek(secs);
   };
 
   useEffect(() => {
@@ -125,33 +132,18 @@ function Player({
   }, [currentMusic]);
 
   useEffect(() => {
-    if (isPlaying) {
-      setCurrentPosHandler();
-      audio.current.play();
-    } else {
-      destroyCurrentPosHandler();
-      audio.current.pause();
+    if (audio.current) {
+      if (isPlaying) {
+        setCurrentPosHandler();
+        audio.current.play();
+      } else {
+        destroyCurrentPosHandler();
+        audio.current.pause();
+      }
     }
   }, [isPlaying]);
 
-  /**
-     * iPhone Fix
-     */
-  function unlockAudio() {
-    audio.current.play();
-    audio.current.pause();
-    audio.current.currentTime = 0;
-
-    document.body.removeEventListener('click', unlockAudio);
-    document.body.removeEventListener('touchstart', unlockAudio);
-  }
-
   const fixedInt = (value) => Number(value).toFixed(0);
-
-  useEffect(() => {
-    document.body.addEventListener('click', unlockAudio);
-    document.body.addEventListener('touchstart', unlockAudio);
-  }, []);
 
   const playerUI = function () {
     const cover = currentMusic.id ? <img src={currentMusic.cover} alt={currentMusic.name || '-'} /> : '';
